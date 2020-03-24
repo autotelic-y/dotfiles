@@ -1,0 +1,64 @@
+[core]
+  quotepath = false # for ja character files
+  precomposeunicode = true # for utf-8-mac(NFD)
+  bare = false
+  excludesfile = ~/.gitignore
+  editor = nvim
+  pager = lv -c
+  autocrlf = false
+[clean]
+  requireforce = true
+[color]
+  branch = always
+  diff = always
+  grep = always
+  interactive = always
+  pager = true
+  showbranch = always
+  status = always
+  ui = always
+[diff]
+  external = "d() { vimdiff "$2" "$5"; }; d"
+  tool = vimdiff # for `git difftool`
+  algorithm = histogram
+[difftool]
+  prompt = false # for `git difftool`
+[merge]
+  ff = false
+  tool = vimdiff # for `git mergetool`
+[mergetool]
+  prompt = false # for `git mergetool`
+[pager]
+  diff = # for `git diff`
+[pull]
+  rebase = preserve
+[push]
+  default = current
+[alias]
+  zip = "!zip() {\
+    local FILENAME; \
+    local COMMITID; \
+    if [ $# -eq 0 ]; \
+    then \
+      echo \"use git zip FILENAME [COMMITID]\"; \
+      exit 1; \
+    fi; \
+    if [ $# -eq 1 ]; \
+    then \
+      FILENAME=$1; \
+      COMMITID=4b825dc642cb6eb9a060e54bf8d69288fbee4904; \
+    fi; \
+    if [ $# -eq 2 ]; \
+    then \
+      FILENAME=$1; \
+      COMMITID=$2; \
+    fi; \
+    git archive --format=zip -o ${FILENAME} HEAD --worktree-attributes `git diff --diff-filter=AMCR --name-only ${COMMITID} HEAD --`; \
+  };zip"
+[include]
+  path = ~/.gitconfig.local
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

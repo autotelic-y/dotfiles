@@ -1,0 +1,32 @@
+# ---------------------------------------------------------------------------- #
+# linter plugins
+# ---------------------------------------------------------------------------- #
+
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+  let g:ale_sign_column_always = 1
+
+  let g:ale_lint_on_text_changed = 'never'
+
+  let g:ale_lint_on_enter = 0
+
+  let g:ale_set_loclist = 0
+
+  let g:ale_set_quickfix = 1
+
+  let g:ale_open_list = 1
+'''
+
+[[plugins]]
+repo = 'stubbornella/csslint'
+on_ft = ['css', 'scss']
+
+[[plugins]]
+repo = 'hokaccha/vim-html5validator'
+on_ft = 'html'
+
+[[plugins]]
+repo = 'syngan/vim-vimlint'
+depends = ['ynkdir/vim-vimlparser']
+on_ft = 'vim'

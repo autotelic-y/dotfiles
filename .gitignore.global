@@ -1,0 +1,25 @@
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+
+# css/sass
+*.sass-cache
+
+# node/npm
+node_modules
+
+# ruby
+Gemfile.lock
+
+# other (DB, Editor etc)
+.bundle
+db/*.sqlite3*
+log/*.log
+*.log
+*.swp
+*~

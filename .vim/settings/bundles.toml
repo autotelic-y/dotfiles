@@ -1,0 +1,169 @@
+# ---------------------------------------------------------------------------- #
+# $HOME/.vim/settings/bundles.toml
+# ---------------------------------------------------------------------------- #
+
+
+
+
+
+
+
+
+
+# ---------------------------------------------------------------------------- #
+# incremental search interface
+# ---------------------------------------------------------------------------- #
+
+[[plugins]]
+repo = 'nixprime/cpsm'
+build = 'env PY3=ON ./install.sh'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+depends = ['nixprime/cpsm']
+hook_add = '''
+  noremap [denite] <Nop>
+  nmap <Space> [denite]
+
+  "========== denite settings =========="
+
+  call denite#custom#filter(
+        \ 'matcher_ignore_globs',
+        \ 'ignore_globs',
+        \ [
+        \   'node_modules/', 'bower_components/', 'tmp/', 'log/',
+        \   '.git', '.gitignore'
+        \ ]
+        \)
+
+  call denite#custom#option(
+        \ 'default',
+        \ 'auto_resize',
+        \ 'true'
+        \)
+
+  call denite#custom#map(
+        \ 'insert',
+        \ '<C-N>',
+        \ '<denite:move_to_next_line>',
+        \ 'noremap nowait'
+        \)
+
+  call denite#custom#map(
+        \ 'insert',
+        \ '<C-P>',
+        \ '<denite:move_to_previous_line>',
+        \ 'noremap nowait'
+        \)
+
+  call denite#custom#map(
+        \ 'insert',
+        \ '<Esc>',
+        \ '<denite:enter_mode:normal>',
+        \ 'noremap nowait'
+        \ )
+
+  call denite#custom#map(
+        \ 'normal',
+        \ '<Esc>',
+        \ '<denite:quit>',
+        \ 'noremap nowait'
+        \)
+
+  "========== source: buffer =========="
+
+  nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
+
+  "========== source: file_rec =========="
+
+  call denite#custom#source(
+        \ 'file_rec',
+        \ 'matchers',
+        \ ['matcher_cpsm', 'matcher_ignore_globs']
+        \)
+
+  call denite#custom#var(
+        \ 'file_rec',
+        \ 'command',
+        \ ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
+        \)
+
+  nnoremap <silent> [denite]f :<C-u>Denite file_rec<CR>
+  "nnoremap <silent> [denite]fr :<C-u>DeniteProjectDir -path='./' -resume -buffer-name=denite-file -default-action=tabswitch<CR>
+  "nnoremap <silent> [denite]fn :<C-u>DeniteProjectDir -path='./' -resume  -buffer-name=denite-file -select=+1 -immediately -statusline=false<CR>
+  "nnoremap <silent> [denite]fp :<C-u>DeniteProjectDir -path='./' -resume -buffer-name=denite-file -select=-1 -immediately -statusline=false<CR>
+
+  "nnoremap <silent> [denite]fg :<C-u>DeniteProjectDir -path='./' -default-action=tabswitch file_rec/git<CR>
+  "nnoremap <silent> [denite]fk :<C-u>DeniteProjectDir -path='./' -default-action=tabswitch file_rec:..<CR>
+  "nnoremap <silent> [denite]ft :<C-u>DeniteProjectDir -path='./' -default-action=tabswitch file_rec:/<CR>
+  "nnoremap <silent> [denite]fh :<C-u>DeniteProjectDir -path='./' -default-action=tabswitch file_rec:$HOME<CR>
+
+  "========== source: directory_rec =========="
+
+  call denite#custom#source(
+        \ 'directory_rec',
+        \ 'matchers',
+        \ ['matcher_cpsm', 'matcher_ignore_globs']
+        \)
+
+  nnoremap <silent> [denite]d :<C-u>Denite -default-action=open directory_rec<CR>
+
+  "========== source: grep =========="
+
+  call denite#custom#var(
+        \ 'grep',
+        \ 'command',
+        \ ['pt', '--nogroup', '--nocolor', '--smart-case', '--hidden']
+        \)
+
+  call denite#custom#var(
+        \ 'grep',
+        \ 'default_opts',
+        \ []
+        \)
+
+  call denite#custom#var(
+        \ 'grep',
+        \ 'recursive_opts',
+        \ []
+        \)
+
+  call denite#custom#source(
+        \ 'grep',
+        \ 'matchers',
+        \ ['matcher_cpsm', 'matcher_ignore_globs']
+        \)
+
+  nnoremap <silent> [denite]g :<C-u>Denite grep<CR>
+  "nnoremap <silent> [denite]gr :<C-u>DeniteProjectDir -path='./' -resume -buffer-name=denite-grep -default-action=tabswitch<CR>
+  "nnoremap <silent> [denite]gn :<C-u>DeniteProjectDir -path='./' -resume -buffer-name=denite-grep -select=+1 -immediately -statusline=false<CR>
+  "nnoremap <silent> [denite]gp :<C-u>DeniteProjectDir -path='./' -resume -buffer-name=denite-grep -select=-1 -immediately -statusline=false<CR>
+
+  "========== source: line =========="
+
+  nnoremap <silent> [denite]l :<C-u>Denite line<CR>
+
+'''
+
+
+
+# ---------------------------------------------------------------------------- #
+# denite/unite additional sources
+# ---------------------------------------------------------------------------- #
+
+[[plugins]]
+repo = 'junegunn/vim-emoji'
+
+[[plugins]]
+repo = 'pocari/vim-denite-emoji'
+depends = ['junegunn/vim-emoji', 'Shougo/denite.nvim']
+hook_add = '''
+  nnoremap <silent> [denite]e :<C-u>Denite emoji<CR>
+'''
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+depends = ['Shougo/denite.nvim']
+hook_add = '''
+  nnoremap <silent> [denite]y :<C-u>Denite neoyank<CR>
+'''
