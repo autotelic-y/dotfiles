@@ -1,0 +1,133 @@
+{
+    // general settings
+    "editor.fontFamily": "Cica",
+    "editor.fontSize": 14,
+    "editor.lineNumbers": "relative",
+    "editor.minimap.scale": 2,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.renderWhitespace": "all",
+    "editor.showFoldingControls": "always",
+    "editor.wordWrap": "on",
+    "problems.autoReveal": true,
+    "files.eol": "\n",
+    "files.trimFinalNewlines": false,
+    "files.trimTrailingWhitespace": true,
+    "window.closeWhenEmpty": true,
+    "window.newWindowDimensions": "maximized",
+    "window.openFilesInNewWindow": "on",
+    "window.openFoldersInNewWindow": "on",
+    "window.zoomLevel": -1,
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    // "workbench.editor.openPositioning": "last",
+    "workbench.editor.showTabs": true,
+    "workbench.settings.editor": "json",
+    "workbench.startupEditor": "none",
+    // workbench.colorCustomizations は VSCodeVim により動的に変化する可能性あり
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "statusBar.debuggingBackground": "#005f5f"
+    },
+
+    // vi mode settings
+    "vim.useSystemClipboard": true,
+    "vim.hlsearch": true,
+    "vim.leader": "<space>",
+    "vim.whichwrap": "h,l,<,>,[,]",
+    "vim.handleKeys": { // vi mode で使わないものをここに指定
+    },
+    "vim.easymotion": true,
+    "vim.sneak": true,
+    "vim.statusBarColorControl": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [";"],
+            "after": [":"],
+        },
+        {
+            "before": [":"],
+            "after": [";"],
+        },
+        {
+            "before": ["<Enter>"],
+            "commands": ["editor.action.insertLineAfter"],
+        },
+        {
+            "before": ["Z", "Z"],
+            "commands": [":wq"],
+        },
+        {
+            "before": ["Z", "Q"],
+            "commands": [":q!"],
+        },
+        {
+            "before": ["<Esc>", "<Esc>"],
+            "commands": [":nohl"],
+        },
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [";"],
+            "after": [":"],
+        },
+        {
+            "before": [":"],
+            "after": [";"],
+        },
+    ],
+
+    // External Terminal
+    "terminal.external.osxExec": "iTerm.app",
+
+    // HTML
+    "html.autoClosingTags": false,
+    "html.format.enable": true,
+    "html.format.extraLiners": "head",
+    "html.format.wrapLineLength": 120,
+    "[html]": {
+        "editor.formatOnSave": true,
+    },
+    "vscode-w3cvalidation.validator-token": "Wed, 08 Apr 2020 16:03:09 GMT",
+    "vscode-w3cvalidation.javaHome": "/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home",
+
+    // Markdown
+    "markdown.preview.fontSize": 10,
+
+    // Go
+    "[go]": {
+        "editor.formatOnSave": true,
+    },
+
+    // Plugin: Go
+    "go.formatTool": "goimports",
+    "go.alternateTools": {
+        "go-langserver": "bingo",
+    },
+    "go.languageServerExperimentalFeatures": {
+        "format": true,
+        "autoComplete": true,
+    },
+    "go.useLanguageServer": true,
+
+    // Plugin: eslint 後で見直し！
+    // "eslint.autoFixOnSave": true,
+    // "eslint.validate": [
+    //     {
+    //         "language": "javascript",
+    //         "autoFix": true
+    //     },
+    //     {
+    //         "language": "javascriptreact",
+    //         "autoFix": true
+    //     },
+    //     {
+    //         "language": "typescript",
+    //         "autoFix": true
+    //     },
+    //     {
+    //         "language": "typescriptreact",
+    //         "autoFix": true
+    //     }
+    // ],
+}
