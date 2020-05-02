@@ -119,3 +119,14 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+#
+source ~/.zsh/basic.zsh
+source ~/.zsh/history.zsh
+source ~/.zsh/tmux.zsh
+
+# for private settings
+if [ -e "$HOME/.zshrc.local" ]
+then
+  source "$HOME/.zshrc.local"
+fi
